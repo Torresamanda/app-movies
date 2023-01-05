@@ -1,31 +1,34 @@
 import React from "react";
-import YouTube from "react-youtube";
+import Youtube from "react-youtube";
 
 import { BACKDROP_PATH } from "../../Config/key";
 
-import { Poster } from './style'
+import { Poster, PosterButton, PosterContent, ContainerMovies, H1 } from './style'
 
-export default function PosterMovie(props) {
+export default function PosterMovie({ movies, movie, playing, trailer, setPlaying, setTrailer }) {
 
     return (
-        <div>
-            {
-                props.movies.map((movie, trailer, playing, setPlaying) => (
+        <ContainerMovies>
+            <>
+                {movie ? (
                     <>
-                        <Poster style={{
-                            backgroundImage: `linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%), 
-                            url(${BACKDROP_PATH + movie.backdrop_path})`
-                        }} />
+                        <Poster
+                            style={{
+                                backgroundImage: `linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%), 
+                                            url(${BACKDROP_PATH}${movie.backdrop_path})`
+                            }}
+                        />
 
                         {playing ? (
                             <>
-                                <YouTube
+                                <Youtube
+                                    setTrailer={setTrailer}
                                     videoId={trailer.key}
                                     className={'youtube-container amru'}
                                     containerClassName={'youtube-container amru'}
                                     opts={{
-                                        width: '100%',
-                                        height: '100%',
+                                        width: '90%',
+                                        height: '90%',
                                         playerVars: {
                                             autoplay: 1,
                                             controls: 0,
@@ -38,29 +41,32 @@ export default function PosterMovie(props) {
                                         }
                                     }}
                                 />
-                                <button onClick={() => setPlaying(false)}>
-                                    Fechar Trailer
-                                </button>
+                                <PosterButton onClick={() => setPlaying(false)}>
+                                    close
+                                </PosterButton>
                             </>
                         ) : (
-                            <div>
-                                <div>
+                            <div className='center-max-size'>
+                                <PosterContent className='poster-content'>
                                     {trailer ? (
-                                        <button
+                                        <PosterButton
                                             className={'button play-video'}
                                             onClick={() => setPlaying(true)}
-                                            type='button'>Abrir Trailer
-                                        </button>
-                                    ) : 'Desculpe não foi encontrado trailer'}
-                                    <h1>{movie.title}</h1>
+                                            type='button'
+                                        >
+                                            Play Trailer
+                                        </PosterButton>
+                                    ) : (
+                                        'Desculpe, não foi encontrado trailer para esse filme'
+                                    )}
+                                    <H1>{movie.title}</H1>
                                     <p>{movie.overview}</p>
-                                </div>
+                                </PosterContent>
                             </div>
-                        )
-                        }
+                        )}
                     </>
-                ))
-            }
-        </div>
+                ) : null}
+            </>
+        </ContainerMovies>
     )
 }

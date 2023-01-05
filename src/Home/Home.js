@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+import 'bootstrap/dist/css/bootstrap.css'
+import { Carousel, CarouselItem } from 'react-bootstrap'
+
+
 import { APIKey, MOVIE_API, SEARCH_API_MOVIE, DISCOVER_API_MOVIE } from '../Components/Config/key'
 
 import Navbar from "../Components/Navbar";
@@ -11,7 +15,7 @@ import AllMovie from "../Components/Movies/AllMovies/index";
 function App() {
   const [searchKey, setSearchKey] = useState('')
   const [movies, setMovies] = useState([])
-  const [movie, setMovie] = useState("Carregando Filmes")
+  const [, setMovie] = useState("Carregando Filmes")
   const [trailer, setTrailer] = useState()
   const [playing, setPlaying] = useState(false)
 
@@ -31,7 +35,7 @@ function App() {
         params: {
           api_key: APIKey,
           query: searchKey,
-          language: 'pt-BR'
+          language: 'pt-BR',
         }
       }
     )
@@ -51,7 +55,7 @@ function App() {
         params: {
           api_key: APIKey,
           append_to_response: 'videos',
-          language: 'pt-BR'
+          language: 'pt-BR',
         }
       }
     )
@@ -66,32 +70,54 @@ function App() {
     setMovie(data)
   }
 
+  const selectMovie = movie => {
+    fetchMovie(movie.id)
+    setPlaying(false)
+    setMovie(movie)
+    window.scrollTo(0, 0)
+  }
 
-  return (
-    <ContainerMovies >
-      <Navbar
-        onSubmit={fetchMovies}
-        onInput={(event) => setSearchKey(event.target.value)}
-      />
+  const renderMovies = () =>
+    movies.map(movie => (
+      <AllMovie selectMovie={selectMovie} key={movie.id} movie={movie} />
+    ))
 
-      {/* {movies.length ? (
-        <>
-          {movie ? (
+  const renderMoviePost = () => (
+    <Carousel onSelect={() => setPlaying(false)} fade indicators={false}>
+      {
+        movies.map(movie => (
+          <CarouselItem interval={15000} >
             <PosterMovie
-              movies={movies}
+              key={movie.id}
+              movie={movie}
               playing={playing}
               setPlaying={setPlaying}
               trailer={trailer}
               setTrailer={setTrailer}
             />
-          ) : null}
-        </>
-      ) : 'Desculpe, não foi encontrado filme'} */}
+          </CarouselItem>
+        ))
+      }
+    </Carousel>
+  )
+
+
+
+  return (
+    <ContainerMovies >
+      <Navbar
+
+        onSubmit={fetchMovies}
+        onInput={(event) => setSearchKey(event.target.value)}
+      />
+
+
+
+      {renderMoviePost()}
+
 
       <RenderMovie className={'center-max-size'}>
-        <AllMovie
-          movies={movies}
-        />
+        {renderMovies()}
       </RenderMovie>
 
     </ContainerMovies>
@@ -105,13 +131,15 @@ const RenderMovie = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 30px;
+
 `
 
 const ContainerMovies = styled.main`
     .center-max-size {
         max-width: 1080px;
         margin: 0 auto;
-        padding: 40px 30px;
+        padding: 40px 30px ;
+
     }
     
     .youtube-container {

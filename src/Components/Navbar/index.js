@@ -7,7 +7,7 @@ import SearchIcon from '../../Img/searchIcon.svg'
 import RandomIcon from '../../Img/faviconTwo.png'
 import Avatar from '../../Img/avatar.png'
 
-export default function Navbar(props) {
+export default function Navbar(props, setSearchKey) {
     return (
         <Header>
             <Title href="/">+Movies</Title>
@@ -21,17 +21,20 @@ export default function Navbar(props) {
                     <Link to="/">
                         <Button>
                             <Img src={RandomIcon} alt="search" />
-                            Surprenda-me
+                            Surpreenda-me
                         </Button>
                     </Link>
 
                     <Search
                         type="text"
                         id="search"
+                        value={props.searchkey}
+                        setSearchKey={props.setSearchKey}
                         onInput={props.onInput}
                     />
+
                     <SubmitSeachButton>
-                        <Img src={SearchIcon} alt="search" />
+                        <Img src={SearchIcon} alt="search" onClick={() => setSearchKey('')}/>
                     </SubmitSeachButton>
 
                     <Link to="/">

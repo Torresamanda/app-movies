@@ -18,6 +18,10 @@ export const Title = styled.a`
     font-size: 25px;
     text-decoration: none;
     color: #FFF;
+
+    &:hover{
+        color: red;
+    }
 `
 
 export const Box = styled.div`
@@ -31,6 +35,7 @@ export const Button = styled.button`
     margin-right: 20px;
     width: 125px;
     height: 25px;
+    font-size: 13px;
 
     background: #e9e6e3;
     color: #0F1014;
@@ -48,7 +53,7 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center;
 
-    gap: 10px;
+    gap: 5px;
 
     &:hover {
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
@@ -57,6 +62,7 @@ export const Button = styled.button`
 
 export const Search = styled.input`
     border: 1px solid;
+    height: 28px;
     background-color: transparent;
     padding: 5px 10px;
     border-radius: 25px;
@@ -70,6 +76,7 @@ export const SubmitSeachButton = styled.button`
     border: none;
     cursor: pointer;
     right: 65px;
+    top: 3px;
 
 `
 
