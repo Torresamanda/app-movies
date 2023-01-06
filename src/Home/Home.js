@@ -5,8 +5,14 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css'
 import { Carousel, CarouselItem } from 'react-bootstrap'
 
-
-import { APIKey, MOVIE_API, SEARCH_API_MOVIE, DISCOVER_API_MOVIE } from '../Components/Config/key'
+import {
+  APIKey,
+  MOVIE_API,
+  SEARCH_API_MOVIE,
+  DISCOVER_API_MOVIE,
+  SEARCH_API_SERIE,
+  DISCOVER_API_SERIE
+} from '../Components/Config/key'
 
 import Navbar from "../Components/Navbar";
 import PosterMovie from "../Components/Movies/Poster";
@@ -14,13 +20,23 @@ import AllMovie from "../Components/Movies/AllMovies/index";
 
 function App() {
   const [searchKey, setSearchKey] = useState('')
+  const [searchKeySeries, setSearchKeySeries] = useState('')
+
   const [movies, setMovies] = useState([])
   const [movie, setMovie] = useState("Carregando Filmes")
+
+  const [series, setSeries] = useState([])
+  const [serie, setSerie] = useState("Carregando Séries")
+
   const [trailer, setTrailer] = useState()
+  const [trailerSerie, setTrailerSerie] = useState([])
+
   const [playing, setPlaying] = useState(false)
+  const [playingSerie, setPlayingSerie] = useState(false)
 
   useEffect(() => {
     fetchMovies()
+    fetchSeries()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -64,17 +80,60 @@ function App() {
       const trailer = data.videos.results.find(
         vid => vid.name === 'Trailer Oficial'
       )
-
       setTrailer(trailer ? trailer : data.videos.results[0])
+    }
+    setMovie(data)
+  }
 
+  const fetchSeries = async event => {
+    if (event) {
+      event.preventDefault()
     }
 
-    setMovie(data)
+    const { data } = await axios.get(
+      `${searchKey ? SEARCH_API_SERIE : DISCOVER_API_SERIE}`,
+      {
+        params: {
+          api_key: APIKey,
+          query: searchKey,
+          language: 'pt-BR',
+        }
+      }
+    )
+
+    setSeries(data.results)
+    setSerie(data.results[0])
+
+    if (data.results.length) {
+      await fetchSerie(data.results[0].id)
+    }
+
+  }
+
+  const fetchSerie = async id => {
+    const { data } = await axios.get(`${MOVIE_API}tv/${id}`,
+      {
+        params: {
+          api_key: APIKey,
+          append_to_response: 'videos',
+          language: 'pt-BR',
+        }
+      }
+    )
+
+    if (data.videos && data.videos.results) {
+      const trailer = data.videos.results.find(
+        vid => vid.name === 'Trailer Oficial'
+      )
+      setTrailerSerie(trailer ? trailer : data.videos.results[0])
+    }
+    setSerie(data)
   }
 
   const selectMovie = movie => {
     fetchMovie(movie.id)
     setPlaying(false)
+    setPlayingSerie(false)
     setMovie(movie)
     window.scrollTo(0, 0)
   }
@@ -85,8 +144,12 @@ function App() {
     ))
 
   const renderMoviePost = () => (
-    <Carousel onSelect={() => { setPlaying(false) }} fade indicators={false}>
-      <CarouselItem interval={150000} >
+    <Carousel onSelect={() => {
+      setPlaying(false)
+      setPlayingSerie(false)
+    }} fade indicators={false}>
+
+      <CarouselItem interval={150000000} >
         <PosterMovie
           key={movie.id}
           movie={movie}
@@ -95,17 +158,27 @@ function App() {
           trailer={trailer}
         />
       </CarouselItem>
-      <CarouselItem>
-        
+
+      <CarouselItem interval={150000000}>
+        <PosterMovie
+          key={serie.id}
+          movie={serie}
+          playing={playingSerie}
+          setPlaying={setPlayingSerie}
+          trailer={trailerSerie}
+        />
       </CarouselItem>
+
     </Carousel>
   )
 
   return (
     <ContainerMovies >
       <Navbar
-        onSubmit={fetchMovies}
-        onInput={(event) => setSearchKey(event.target.value)}
+        onSubmit={fetchMovies ? fetchMovies : fetchSeries}
+        onInput={(event) => {
+          setSearchKey(event.target.value)
+        }}
       />
 
       {renderMoviePost()}

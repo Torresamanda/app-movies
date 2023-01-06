@@ -5,7 +5,7 @@ import { BACKDROP_PATH } from "../../Config/key";
 
 import { Poster, PosterButton, PosterContent, ContainerMovies, H1 } from './style'
 
-export default function PosterMovie({ movies, movie, playing, trailer, setPlaying, setTrailer }) {
+export default function PosterMovie({ movie, playing, playingSeries, setPlayingSerie, trailer, setPlaying, trailerSerie }) {
 
     return (
         <ContainerMovies>
@@ -15,14 +15,14 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                         <Poster
                             style={{
                                 backgroundImage: `linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%), 
-                                            url(${BACKDROP_PATH}${movie.backdrop_path})`
+                                                  url(${BACKDROP_PATH}${movie.backdrop_path})`
                             }}
                         />
 
-                        {playing ? (
+                        {(playing ? playing : playingSeries ) ? (
                             <>
                                 <Youtube
-                                    videoId={trailer.key}
+                                    videoId={(trailer.key ? trailer.key : trailerSerie.key)}
                                     className={'youtube-container amru'}
                                     containerClassName={'youtube-container amru'}
                                     opts={{
@@ -40,7 +40,10 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                                         }
                                     }}
                                 />
-                                <PosterButton className="close-video" onClick={() => setPlaying(false)}>
+                                <PosterButton className="close-video" onClick={() => {
+                                    setPlaying(false)
+                                    setPlayingSerie(false)
+                                }}>
                                     Fechar Trailer
                                 </PosterButton>
                             </>
@@ -50,7 +53,10 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                                     {trailer ? (
                                         <PosterButton
                                             className={'button play-video'}
-                                            onClick={() =>  setPlaying(true)}
+                                            onClick={() =>  {
+                                                setPlaying(true)
+                                                setPlayingSerie(true)
+                                            }}
                                             type='button'
                                         >
                                             Iniciar Trailer
@@ -58,7 +64,7 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                                     ) : (
                                         'Desculpe, não foi encontrado trailer para esse filme'
                                     )}
-                                    <H1>{movie.title}</H1>
+                                    <H1>{movie.title ? movie.title : movie.name}</H1>
                                     <p>{movie.overview ? movie.overview : 'Não há sinopse para este filme'}</p>
                                 </PosterContent>
                             </div>
