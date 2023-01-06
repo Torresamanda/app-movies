@@ -1,7 +1,7 @@
 import React from "react";
 import Youtube from "react-youtube";
 
-import { BACKDROP_PATH } from "../../Config/key";
+import { BACKDROP_PATH } from "../Config/key";
 
 import { Poster, PosterButton, PosterContent, ContainerMovies, H1 } from './style'
 

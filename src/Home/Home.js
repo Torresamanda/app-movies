@@ -15,8 +15,8 @@ import {
 } from '../Components/Config/key'
 
 import Navbar from "../Components/Navbar";
-import PosterMovie from "../Components/Movies/Poster";
-import AllMovie from "../Components/Movies/AllMovies/index";
+import PosterMovie from "../Components/PosterMoviesAndSeries";
+import AllMovie from "../Components/Movies/RenderMoviesAndSeries/index";
 
 function App() {
   const [searchKey, setSearchKey] = useState('')
