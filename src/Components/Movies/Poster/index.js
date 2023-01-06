@@ -22,12 +22,11 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                         {playing ? (
                             <>
                                 <Youtube
-                                    setTrailer={setTrailer}
                                     videoId={trailer.key}
                                     className={'youtube-container amru'}
                                     containerClassName={'youtube-container amru'}
                                     opts={{
-                                        width: '90%',
+                                        width: '80%',
                                         height: '90%',
                                         playerVars: {
                                             autoplay: 1,
@@ -41,8 +40,8 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                                         }
                                     }}
                                 />
-                                <PosterButton onClick={() => setPlaying(false)}>
-                                    close
+                                <PosterButton className="close-video" onClick={() => setPlaying(false)}>
+                                    Fechar Trailer
                                 </PosterButton>
                             </>
                         ) : (
@@ -51,16 +50,16 @@ export default function PosterMovie({ movies, movie, playing, trailer, setPlayin
                                     {trailer ? (
                                         <PosterButton
                                             className={'button play-video'}
-                                            onClick={() => setPlaying(true)}
+                                            onClick={() =>  setPlaying(true)}
                                             type='button'
                                         >
-                                            Play Trailer
+                                            Iniciar Trailer
                                         </PosterButton>
                                     ) : (
                                         'Desculpe, não foi encontrado trailer para esse filme'
                                     )}
                                     <H1>{movie.title}</H1>
-                                    <p>{movie.overview}</p>
+                                    <p>{movie.overview ? movie.overview : 'Não há sinopse para este filme'}</p>
                                 </PosterContent>
                             </div>
                         )}

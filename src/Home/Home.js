@@ -15,7 +15,7 @@ import AllMovie from "../Components/Movies/AllMovies/index";
 function App() {
   const [searchKey, setSearchKey] = useState('')
   const [movies, setMovies] = useState([])
-  const [, setMovie] = useState("Carregando Filmes")
+  const [movie, setMovie] = useState("Carregando Filmes")
   const [trailer, setTrailer] = useState()
   const [playing, setPlaying] = useState(false)
 
@@ -64,7 +64,9 @@ function App() {
       const trailer = data.videos.results.find(
         vid => vid.name === 'Trailer Oficial'
       )
+
       setTrailer(trailer ? trailer : data.videos.results[0])
+
     }
 
     setMovie(data)
@@ -83,38 +85,30 @@ function App() {
     ))
 
   const renderMoviePost = () => (
-    <Carousel onSelect={() => setPlaying(false)} fade indicators={false}>
-      {
-        movies.map(movie => (
-          <CarouselItem interval={15000} >
-            <PosterMovie
-              key={movie.id}
-              movie={movie}
-              playing={playing}
-              setPlaying={setPlaying}
-              trailer={trailer}
-              setTrailer={setTrailer}
-            />
-          </CarouselItem>
-        ))
-      }
+    <Carousel onSelect={() => { setPlaying(false) }} fade indicators={false}>
+      <CarouselItem interval={150000} >
+        <PosterMovie
+          key={movie.id}
+          movie={movie}
+          playing={playing}
+          setPlaying={setPlaying}
+          trailer={trailer}
+        />
+      </CarouselItem>
+      <CarouselItem>
+        
+      </CarouselItem>
     </Carousel>
   )
-
-
 
   return (
     <ContainerMovies >
       <Navbar
-
         onSubmit={fetchMovies}
         onInput={(event) => setSearchKey(event.target.value)}
       />
 
-
-
       {renderMoviePost()}
-
 
       <RenderMovie className={'center-max-size'}>
         {renderMovies()}
@@ -127,10 +121,10 @@ function App() {
 export default App;
 
 const RenderMovie = styled.section`
-    background: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50));
+    /* background: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50)); */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 30px;
+    gap: 40px;
 
 `
 
@@ -148,12 +142,5 @@ const ContainerMovies = styled.main`
         right: 0;
         top: 0;
         bottom: 0;
-    }
-
-    .close-video {
-        position: absolute;
-        z-index: 2;
-        bottom: 10px;
-        left: 10px;
     }
 `

@@ -14,10 +14,6 @@ export default function Navbar(props, setSearchKey) {
 
             <Form onSubmit={props.onSubmit}>
                 <Box>
-                    <Link to='/'>
-                        <Button>Séries</Button>
-                    </Link>
-
                     <Link to="/">
                         <Button>
                             <Img src={RandomIcon} alt="search" />

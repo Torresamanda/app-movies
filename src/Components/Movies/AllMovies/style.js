@@ -5,6 +5,7 @@ export const ContainerMovie = styled.main`
     cursor: pointer;
     text-align: center;
     font-size: 16px;  
+    color: #FFF;
 `
 
 export const Title = styled.h5`
@@ -19,7 +20,6 @@ export const SectionInfos = styled.section`
 export const Imagem = styled.img`
     max-width: 100%;
     border-radius: 1rem;
-    max-width: 100%;
     -moz-transition: all 0.3s;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;

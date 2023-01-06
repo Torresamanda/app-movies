@@ -11,17 +11,17 @@ export const ContainerMovies = styled.main`
     
     .youtube-container {
         position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
+        margin-bottom: 10px;
+        display: flex; 
+        align-items: center;
+        justify-content: center;
     }
 
     .close-video {
         position: absolute;
         z-index: 2;
-        bottom: 10px;
-        left: 10px;
+        bottom: 17.5px;
+        left: 127.5px;
     }
 `
 
@@ -36,17 +36,19 @@ export const Poster = styled.section`
 `
 
 export const PosterButton = styled.button`
+    background: #e9e6e3;
+    color: #0F1014;
+
     margin: 20px 0;
-    background: #0F1014;
-    color: white;
     border: none;
     outline: none;
-    padding: 10px 15px;
+    padding: 5px 9px;
     cursor: pointer;
     transition: box-shadow 0.2s;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     border: 1px solid gray;
+    border-radius: 25px;
 
     &:hover {
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
