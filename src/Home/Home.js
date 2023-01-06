@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import axios from "axios";
 
 import 'bootstrap/dist/css/bootstrap.css'
 import { Carousel, CarouselItem } from 'react-bootstrap'
+
+import { RenderMovie, Container } from './style'
 
 import {
   APIKey,
@@ -16,24 +17,23 @@ import {
 
 import Navbar from "../Components/Navbar";
 import PosterMovie from "../Components/PosterMoviesAndSeries";
-import AllMovie from "../Components/Movies/RenderMoviesAndSeries/index";
+import RenderMoviesAndSeries from "../Components/RenderMoviesAndSeries/index";
 
-function App() {
+export default function Home() {
   const [searchKey, setSearchKey] = useState('')
-  const [searchKeySeries, setSearchKeySeries] = useState('')
 
   const [movies, setMovies] = useState([])
   const [movie, setMovie] = useState("Carregando Filmes")
+  const [trailer, setTrailer] = useState()
+  const [playing, setPlaying] = useState(false)
+  const [isShowMovies, setIsShowMovies] = useState(true)
 
   const [series, setSeries] = useState([])
   const [serie, setSerie] = useState("Carregando Séries")
-
-  const [trailer, setTrailer] = useState()
   const [trailerSerie, setTrailerSerie] = useState([])
-
-  const [playing, setPlaying] = useState(false)
   const [playingSerie, setPlayingSerie] = useState(false)
-
+  const [isShowSeries, setIsShowSeries] = useState(false)
+  
   useEffect(() => {
     fetchMovies()
     fetchSeries()
@@ -50,7 +50,7 @@ function App() {
       {
         params: {
           api_key: APIKey,
-          query: searchKey,
+
           language: 'pt-BR',
         }
       }
@@ -95,13 +95,13 @@ function App() {
       {
         params: {
           api_key: APIKey,
-          query: searchKey,
           language: 'pt-BR',
         }
       }
     )
 
     setSeries(data.results)
+    console.log(data.results)
     setSerie(data.results[0])
 
     if (data.results.length) {
@@ -138,18 +138,33 @@ function App() {
     window.scrollTo(0, 0)
   }
 
+  const selectSerie = serie => {
+    fetchSerie(serie.id)
+    setSerie(serie)
+    setPlaying(false)
+    setPlayingSerie(false)
+    window.scrollTo(0, 0)
+  }
+
   const renderMovies = () =>
     movies.map(movie => (
-      <AllMovie selectMovie={selectMovie} key={movie.id} movie={movie} />
+      isShowMovies && <RenderMoviesAndSeries selectMovie={selectMovie} key={movie.id} movie={movie} />
     ))
+
+  const renderSeries = () =>
+    series.map(serie => (
+      isShowSeries && <RenderMoviesAndSeries selectMovie={selectSerie} key={serie.id} movie={serie} />
+    ))
+
 
   const renderMoviePost = () => (
     <Carousel onSelect={() => {
       setPlaying(false)
       setPlayingSerie(false)
+      
     }} fade indicators={false}>
 
-      <CarouselItem interval={150000000} >
+      <CarouselItem interval={150000000}>
         <PosterMovie
           key={movie.id}
           movie={movie}
@@ -172,48 +187,46 @@ function App() {
     </Carousel>
   )
 
+  const handleClick = e => {
+    setIsShowMovies(current => !current)
+    setIsShowSeries(current => !current)
+    setSearchKey('')
+  }
+
+  const handleText = () => {
+    switch (isShowMovies === true && isShowSeries === true) {
+      case isShowMovies:
+        return 'Filmes'
+      case isShowSeries:
+        return 'Séries'
+      default:
+        break;
+    }
+  }
+
   return (
-    <ContainerMovies >
+    <Container>
       <Navbar
-        onSubmit={fetchMovies ? fetchMovies : fetchSeries}
+        onSubmit={fetchMovies}
         onInput={(event) => {
           setSearchKey(event.target.value)
         }}
+        searchKey={searchKey}
       />
 
       {renderMoviePost()}
 
+      <div>
+        <button onClick={() => handleClick()}>{handleText()}</button>
+      </div>
+
       <RenderMovie className={'center-max-size'}>
         {renderMovies()}
+        {renderSeries()}
       </RenderMovie>
 
-    </ContainerMovies>
+    </Container>
   );
 }
 
-export default App;
 
-const RenderMovie = styled.section`
-    /* background: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50)); */
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 40px;
-
-`
-
-const ContainerMovies = styled.main`
-    .center-max-size {
-        max-width: 1080px;
-        margin: 0 auto;
-        padding: 40px 30px ;
-
-    }
-    
-    .youtube-container {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-`

@@ -62,10 +62,10 @@ export default function PosterMovie({ movie, playing, playingSeries, setPlayingS
                                             Iniciar Trailer
                                         </PosterButton>
                                     ) : (
-                                        'Desculpe, não foi encontrado trailer para esse filme'
+                                        'Desculpe, não foi encontrado trailer'
                                     )}
                                     <H1>{movie.title ? movie.title : movie.name}</H1>
-                                    <p>{movie.overview ? movie.overview : 'Não há sinopse para este filme'}</p>
+                                    <p>{movie.overview ? movie.overview : 'Desculpe, não foi encontrado sinopse'}</p>
                                 </PosterContent>
                             </div>
                         )}

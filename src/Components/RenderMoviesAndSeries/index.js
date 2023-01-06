@@ -1,10 +1,10 @@
 import React from "react";
 
-import { imgURL } from "../../Config/key";
+import { imgURL } from "../Config/key";
 
 import { ContainerMovie, Title, SectionInfos, Imagem, MovieVoting } from './style'
 
-export default function AllMovie({ movie, selectMovie }) {
+export default function RenderMoviesAndSeries({ movie, selectMovie }) {
     return (
         <ContainerMovie onClick={() =>  selectMovie(movie)}>
             <>

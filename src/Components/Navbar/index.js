@@ -24,13 +24,15 @@ export default function Navbar(props, setSearchKey) {
                     <Search
                         type="text"
                         id="search"
-                        value={props.searchkey}
+                        value={props.searchKey}
                         setSearchKey={props.setSearchKey}
                         onInput={props.onInput}
                     />
 
                     <SubmitSeachButton>
-                        <Img src={SearchIcon} alt="search" onClick={() => setSearchKey('')}/>
+                        <Img src={SearchIcon} alt="search" onClick={() => {
+                            setSearchKey('')
+                        }}/>
                     </SubmitSeachButton>
 
                     <Link to="/">

@@ -15,6 +15,12 @@ export const ContainerMovies = styled.main`
         display: flex; 
         align-items: center;
         justify-content: center;
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
     }
 
     .close-video {
@@ -32,7 +38,6 @@ export const Poster = styled.section`
     position: relative;
     display: flex;
     align-items: flex-end;
-    padding-bottom: 50px;
 `
 
 export const PosterButton = styled.button`
