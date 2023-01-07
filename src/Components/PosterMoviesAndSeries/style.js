@@ -11,23 +11,20 @@ export const ContainerMovies = styled.main`
     
     .youtube-container {
         position: absolute;
-        margin-bottom: 10px;
-        display: flex; 
-        align-items: center;
-        justify-content: center;
-
-        position: absolute;
         left: 0;
         right: 0;
-        top: 0;
+        top: 95px;
         bottom: 0;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
     }
 
     .close-video {
-        position: absolute;
-        z-index: 2;
-        bottom: 17.5px;
-        left: 127.5px;
+        position: relative;
+       bottom: 70px;
+       left: 65px;
     }
 `
 
@@ -38,6 +35,7 @@ export const Poster = styled.section`
     position: relative;
     display: flex;
     align-items: flex-end;
+    
 `
 
 export const PosterButton = styled.button`

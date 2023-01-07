@@ -76,8 +76,6 @@ export const SubmitSeachButton = styled.button`
     border: none;
     cursor: pointer;
     right: 65px;
-    top: 3px;
-
 `
 
 export const Img = styled.img`

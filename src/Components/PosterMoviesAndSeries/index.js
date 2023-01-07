@@ -26,8 +26,8 @@ export default function PosterMovie({ movie, playing, playingSeries, setPlayingS
                                     className={'youtube-container amru'}
                                     containerClassName={'youtube-container amru'}
                                     opts={{
-                                        width: '80%',
-                                        height: '90%',
+                                        width: '90%',
+                                        height: '25%',
                                         playerVars: {
                                             autoplay: 1,
                                             controls: 0,

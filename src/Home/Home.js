@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import 'bootstrap/dist/css/bootstrap.css'
-import { Carousel, CarouselItem } from 'react-bootstrap'
-
 import { RenderMovie, Container } from './style'
 
 import {
@@ -16,7 +13,7 @@ import {
 } from '../Components/Config/key'
 
 import Navbar from "../Components/Navbar";
-import PosterMovie from "../Components/PosterMoviesAndSeries";
+import Poster from "../Components/PosterMoviesAndSeries";
 import RenderMoviesAndSeries from "../Components/RenderMoviesAndSeries/index";
 
 export default function Home() {
@@ -33,7 +30,7 @@ export default function Home() {
   const [trailerSerie, setTrailerSerie] = useState([])
   const [playingSerie, setPlayingSerie] = useState(false)
   const [isShowSeries, setIsShowSeries] = useState(false)
-  
+
   useEffect(() => {
     fetchMovies()
     fetchSeries()
@@ -50,7 +47,7 @@ export default function Home() {
       {
         params: {
           api_key: APIKey,
-
+          query: searchKey,
           language: 'pt-BR',
         }
       }
@@ -95,13 +92,13 @@ export default function Home() {
       {
         params: {
           api_key: APIKey,
+          query: searchKey,
           language: 'pt-BR',
         }
       }
     )
 
     setSeries(data.results)
-    console.log(data.results)
     setSerie(data.results[0])
 
     if (data.results.length) {
@@ -151,46 +148,36 @@ export default function Home() {
       isShowMovies && <RenderMoviesAndSeries selectMovie={selectMovie} key={movie.id} movie={movie} />
     ))
 
+  const renderPosterMovie = () =>
+    isShowMovies && 
+    <Poster
+      key={movie.id}
+      movie={movie}
+      playing={playing}
+      setPlaying={setPlaying}
+      trailer={trailer}
+    />
+
   const renderSeries = () =>
     series.map(serie => (
       isShowSeries && <RenderMoviesAndSeries selectMovie={selectSerie} key={serie.id} movie={serie} />
     ))
 
+  const renderSeriePost = () =>
+    isShowSeries &&
+    <Poster
+      key={serie.id}
+      movie={serie}
+      playing={playingSerie}
+      setPlaying={setPlayingSerie}
+      trailer={trailerSerie}
+    />
 
-  const renderMoviePost = () => (
-    <Carousel onSelect={() => {
-      setPlaying(false)
-      setPlayingSerie(false)
-      
-    }} fade indicators={false}>
-
-      <CarouselItem interval={150000000}>
-        <PosterMovie
-          key={movie.id}
-          movie={movie}
-          playing={playing}
-          setPlaying={setPlaying}
-          trailer={trailer}
-        />
-      </CarouselItem>
-
-      <CarouselItem interval={150000000}>
-        <PosterMovie
-          key={serie.id}
-          movie={serie}
-          playing={playingSerie}
-          setPlaying={setPlayingSerie}
-          trailer={trailerSerie}
-        />
-      </CarouselItem>
-
-    </Carousel>
-  )
 
   const handleClick = e => {
     setIsShowMovies(current => !current)
     setIsShowSeries(current => !current)
-    setSearchKey('')
+    window.scrollTo(0, 0)
   }
 
   const handleText = () => {
@@ -207,18 +194,21 @@ export default function Home() {
   return (
     <Container>
       <Navbar
-        onSubmit={fetchMovies}
+        onSubmit={fetchSeries}
         onInput={(event) => {
           setSearchKey(event.target.value)
         }}
-        searchKey={searchKey}
+        value={searchKey}
       />
 
-      {renderMoviePost()}
+      {renderPosterMovie()}
+      {/* {renderMoviePost()} */}
+      {renderSeriePost()}
 
       <div>
         <button onClick={() => handleClick()}>{handleText()}</button>
       </div>
+
 
       <RenderMovie className={'center-max-size'}>
         {renderMovies()}
