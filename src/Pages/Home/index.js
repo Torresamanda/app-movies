@@ -10,11 +10,11 @@ import {
   DISCOVER_API_MOVIE,
   SEARCH_API_SERIE,
   DISCOVER_API_SERIE
-} from '../Components/Config/key'
+} from '../../Components/Config/key'
 
-import Navbar from "../Components/Navbar";
-import Poster from "../Components/PosterMoviesAndSeries";
-import RenderMoviesAndSeries from "../Components/RenderMoviesAndSeries/index";
+import Navbar from "../../Components/Navbar/index";
+import Poster from "../../Components/PosterMoviesAndSeries";
+import RenderMoviesAndSeries from "../../Components/RenderMoviesAndSeries/index";
 
 export default function Home() {
   const [searchKey, setSearchKey] = useState('')
@@ -199,9 +199,7 @@ export default function Home() {
       case isShowMovies:
         return <Navbar
           onSubmit={fetchSeries}
-          onInput={(event) => {
-            setSearchKey(event.target.value)
-          }}
+          onInput={(event) => setSearchKey(event.target.value)}
           setSearchKey={setSearchKey}
           searchKey={searchKey}
           onClick={() => handleClick()}
@@ -211,9 +209,7 @@ export default function Home() {
       case isShowSeries:
         return <Navbar
           onSubmit={fetchMovies}
-          onInput={(event) => {
-            setSearchKey(event.target.value)
-          }}
+          onInput={(event) => setSearchKey(event.target.value)}
           onClick={() => handleClick()}
           handleText={handleText()}
           setSearchKey={setSearchKey}

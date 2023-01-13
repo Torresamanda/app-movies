@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './global.css';
 
 
-import Home from './Home/Home';
+import Home from './Pages/Home/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
