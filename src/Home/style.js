@@ -16,13 +16,3 @@ export const Container = styled.main`
 
     } 
 `
-export const BoxButton = styled.div`
-    background: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50));
-    width: 100%;
-    padding: 15px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-`

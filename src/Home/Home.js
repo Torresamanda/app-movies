@@ -135,6 +135,21 @@ export default function Home() {
     window.scrollTo(0, 0)
   }
 
+  const renderMovies = () =>
+    movies.map(movie => (
+      isShowMovies && <RenderMoviesAndSeries selectMovie={selectMovie} key={movie.id} movie={movie} />
+    ))
+
+  const renderPosterMovie = () =>
+    isShowMovies &&
+    <Poster
+      key={movie.id}
+      movie={movie}
+      playing={playing}
+      setPlaying={setPlaying}
+      trailer={trailer}
+    />
+
   const selectSerie = serie => {
     fetchSerie(serie.id)
     setSerie(serie)
@@ -143,20 +158,6 @@ export default function Home() {
     window.scrollTo(0, 0)
   }
 
-  const renderMovies = () =>
-    movies.map(movie => (
-      isShowMovies && <RenderMoviesAndSeries selectMovie={selectMovie} key={movie.id} movie={movie} />
-    ))
-
-  const renderPosterMovie = () =>
-    isShowMovies && 
-    <Poster
-      key={movie.id}
-      movie={movie}
-      playing={playing}
-      setPlaying={setPlaying}
-      trailer={trailer}
-    />
 
   const renderSeries = () =>
     series.map(serie => (
@@ -177,7 +178,9 @@ export default function Home() {
   const handleClick = e => {
     setIsShowMovies(current => !current)
     setIsShowSeries(current => !current)
-    window.scrollTo(0, 0)
+    setPlaying(false)
+    setPlayingSerie(false)
+    setSearchKey("")
   }
 
   const handleText = () => {
@@ -191,17 +194,39 @@ export default function Home() {
     }
   }
 
+  const handleNavbar = () => {
+    switch (isShowMovies === true && isShowSeries === true) {
+      case isShowMovies:
+        return <Navbar
+          onSubmit={fetchSeries}
+          onInput={(event) => {
+            setSearchKey(event.target.value)
+          }}
+          setSearchKey={setSearchKey}
+          searchKey={searchKey}
+          onClick={() => handleClick()}
+          handleText={handleText()}
+        />
+
+      case isShowSeries:
+        return <Navbar
+          onSubmit={fetchMovies}
+          onInput={(event) => {
+            setSearchKey(event.target.value)
+          }}
+          onClick={() => handleClick()}
+          handleText={handleText()}
+          setSearchKey={setSearchKey}
+          searchKey={searchKey}
+        />
+      default:
+        break;
+    }
+  }
+
   return (
     <Container>
-      <Navbar
-        onSubmit={fetchSeries}
-        onInput={(event) => {
-          setSearchKey(event.target.value)
-        }}
-        value={searchKey}
-        onClick={() => handleClick()}
-        handleText={handleText()}
-      />
+      {handleNavbar()}
 
       {renderPosterMovie()}
       {renderSeriePost()}
