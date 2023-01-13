@@ -199,16 +199,12 @@ export default function Home() {
           setSearchKey(event.target.value)
         }}
         value={searchKey}
+        onClick={() => handleClick()}
+        handleText={handleText()}
       />
 
       {renderPosterMovie()}
-      {/* {renderMoviePost()} */}
       {renderSeriePost()}
-
-      <div>
-        <button onClick={() => handleClick()}>{handleText()}</button>
-      </div>
-
 
       <RenderMovie className={'center-max-size'}>
         {renderMovies()}

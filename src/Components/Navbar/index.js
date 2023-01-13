@@ -21,6 +21,8 @@ export default function Navbar(props, setSearchKey) {
                         </Button>
                     </Link>
 
+                    <Button onClick={props.onClick}>{props.handleText}</Button>
+
                     <Search
                         type="text"
                         id="search"
