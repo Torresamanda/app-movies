@@ -92,12 +92,10 @@ export const SectionButtons = styled.div`
 `
 
 export const Button = styled.button`
-    width: 185px;
-    height: 30px;
-
     background: #e9e6e3;
     color: #0F1014;
-
+    width: 125px;
+    height: 25px;
     text-align: center;
     float: left;
     position: relative;
