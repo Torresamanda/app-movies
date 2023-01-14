@@ -6,12 +6,14 @@ import './global.css';
 
 
 import Home from './Pages/Home/index';
+import Random from './Pages/Random';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/random" element={<Random/>}/>
     </Routes>
   </BrowserRouter>
 );

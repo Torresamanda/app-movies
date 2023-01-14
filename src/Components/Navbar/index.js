@@ -14,7 +14,7 @@ export default function Navbar(props, setSearchKey) {
 
             <Form onSubmit={props.onSubmit}>
                 <Box>
-                    <Link to="/">
+                    <Link to="/random">
                         <Button>
                             <Img src={RandomIcon} alt="search" />
                             Surpreenda-me

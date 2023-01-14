@@ -1,11 +1,9 @@
 import styled from "styled-components"
 
 export const RenderMovie = styled.section`
-    /* background: linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .50)); */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 40px;
-
 `
 
 export const Container = styled.main`

@@ -10,7 +10,7 @@ import {
   DISCOVER_API_MOVIE,
   SEARCH_API_SERIE,
   DISCOVER_API_SERIE
-} from '../../Components/Config/key'
+} from '../../Config/key.js'
 
 import Navbar from "../../Components/Navbar/index";
 import Poster from "../../Components/PosterMoviesAndSeries";

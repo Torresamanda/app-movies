@@ -1,6 +1,6 @@
 import React from "react";
 
-import { imgURL } from "../Config/key";
+import { imgURL } from "../../Config/key";
 
 import { ContainerMovie, Title, SectionInfos, Imagem, MovieVoting } from './style'
 
