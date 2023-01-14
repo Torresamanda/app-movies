@@ -6,7 +6,7 @@ import './global.css';
 
 
 import Home from './Pages/Home/index';
-import Random from './Pages/Random';
+import Random from './Pages/Random/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
