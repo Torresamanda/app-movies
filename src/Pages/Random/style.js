@@ -22,8 +22,32 @@ export const Main = styled.div`
     justify-content: center;
 `
 
+export const Header = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
+
 export const H1 = styled.h1`
     margin: 3rem 0;
+`
+
+export const VoteAverange = styled.p`
+    width: 35px;
+    background-color: #F6BE27;
+    color: #0f1014;
+    font-weight: bold;
+    border: 1px solid gray;
+    padding: 13px;
+    font-size: 12px;
+    border-radius: 25px;
+
+`
+
+export const RealeseDate = styled.span`
+    color: #b3b3b3;
+    font-weight: bold;
+    margin-top: 1em;
 `
 
 export const Sinopse = styled.p`
@@ -63,6 +87,7 @@ export const SectionButtons = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 25px;
     gap: 40px;
 `
 
@@ -92,3 +117,5 @@ export const Button = styled.button`
         box-shadow: 0 2px 2px rgba(255, 254, 254, 0.5);
     }
 `
+
+

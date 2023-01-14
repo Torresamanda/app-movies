@@ -3,19 +3,23 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
 
-import { 
-    Container, 
+import {
+    Container,
     Main,
     Img,
     ImgRandom,
     SectionDetails,
     SectionVideo,
     TextNoTrailer,
-    H1, 
+    H1,
     Sinopse,
     SectionButtons,
-    Button} 
-from './style'
+    Button,
+    VoteAverange,
+    RealeseDate,
+    Header
+}
+    from './style'
 
 import { imgURL, APIKey, TOP_MOVIE, TOP_TV, MOVIE_API, } from '../../Config/key'
 
@@ -51,6 +55,7 @@ export default function Random() {
         })
 
         setMovie(data.results[0])
+        console.log(data.results)
         setMovies(data.results)
 
         if (data.results.length) {
@@ -83,8 +88,16 @@ export default function Random() {
                 <Img src={imgURL + movie.poster_path} alt={movie.title ? movie.title : movie.name} />
 
                 <SectionDetails>
-                    <H1>{movie.title ? movie.title : movie.name}</H1>
+
+                    <Header>
+                        <H1>{movie.title ? movie.title : movie.name}</H1>
+                        <VoteAverange>{parseInt(movie.vote_average)}</VoteAverange>
+                    </Header>
+
+
                     <Sinopse>{movie.overview ? movie.overview : 'Desculpe, não há sinopse.'}</Sinopse>
+
+                    <RealeseDate>Data de lançamento: {movie.release_date}</RealeseDate>
 
                     <SectionVideo>
                         {movies.length ? (
@@ -117,7 +130,7 @@ export default function Random() {
                     </SectionVideo>
                 </SectionDetails>
             </Main>
-            
+
             <SectionButtons>
                 <Button onClick={getMovies}>
                     <ImgRandom src={favicon} alt="" />
