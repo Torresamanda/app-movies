@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import axios from "axios";
 import YouTube from "react-youtube";
 
@@ -21,7 +22,9 @@ import {
 
 import { imgURL, APIKey, TOP_MOVIE, MOVIE_API, } from '../../Config/key'
 
-export default function Random() {
+import favicon from '../../Img/faviconTwo.png'
+
+export default function RandomMovies() {
     const randomPages = Math.floor(Math.random() * 500) + 1
 
     const [movie, setMovie] = useState({ title: 'Carregando Filmes' })
@@ -122,6 +125,16 @@ export default function Random() {
                     </SectionVideo>
                 </SectionDetails>
             </Main>
+            
+            <SectionButtons>
+                <Button onClick={getMovies}>
+                    <ImgRandom src={favicon} alt="" />
+                    Surpreenda-me
+                </Button>
+                <Link to='/'>
+                    <Button>Home</Button>
+                </Link>
+            </SectionButtons>
         </>
     )
 }
