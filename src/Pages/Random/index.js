@@ -3,6 +3,20 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
 
+import { 
+    Container, 
+    Main,
+    Img,
+    ImgRandom,
+    SectionDetails,
+    SectionVideo,
+    TextNoTrailer,
+    H1, 
+    Sinopse,
+    SectionButtons,
+    Button} 
+from './style'
+
 import { imgURL, APIKey, TOP_MOVIE, TOP_TV, MOVIE_API, } from '../../Config/key'
 
 import favicon from '../../Img/faviconTwo.png'
@@ -64,15 +78,15 @@ export default function Random() {
     }
 
     return (
-        <div>
-            <main>
-                <img src={imgURL + movie.poster_path} alt={movie.title} />
+        <Container>
+            <Main>
+                <Img src={imgURL + movie.poster_path} alt={movie.title ? movie.title : movie.name} />
 
-                <section>
-                    <h1>{movie.title ? movie.title : movie.name}</h1>
-                    <p>{movie.overview ? movie.overview : 'Desculpe, não há sinopse.'}</p>
+                <SectionDetails>
+                    <H1>{movie.title ? movie.title : movie.name}</H1>
+                    <Sinopse>{movie.overview ? movie.overview : 'Desculpe, não há sinopse.'}</Sinopse>
 
-                    <div>
+                    <SectionVideo>
                         {movies.length ? (
                             <>
                                 {trailer ? (
@@ -97,20 +111,23 @@ export default function Random() {
                                             }}
                                         />
                                     </>
-                                ) : 'Desculpe, não foi encontrado trailer.'}
+                                ) : <TextNoTrailer>Desculpe, não foi encontrado trailer.</TextNoTrailer>}
                             </>
                         ) : null}
-                    </div>
-                </section>
-            </main>
+                    </SectionVideo>
+                </SectionDetails>
+            </Main>
             
-            <div>
-                <button onClick={getMovies}>Surpreenda-me</button>
+            <SectionButtons>
+                <Button onClick={getMovies}>
+                    <ImgRandom src={favicon} alt="" />
+                    Surpreenda-me com filme
+                </Button>
                 <Link to='/'>
-                    <button>Home</button>
+                    <Button>Home</Button>
                 </Link>
-            </div>
+            </SectionButtons>
 
-        </div>
+        </Container>
     )
 }
