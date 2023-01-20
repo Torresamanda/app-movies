@@ -14,3 +14,9 @@ export const Container = styled.main`
 
     } 
 `
+
+export const H2 = styled.h2`
+    position: relative;
+    margin-left: 18%;
+    margin-bottom: 15px;
+`

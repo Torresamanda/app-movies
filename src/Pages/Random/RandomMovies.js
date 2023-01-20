@@ -85,7 +85,7 @@ export default function RandomMovies() {
                 <SectionDetails>
 
                     <Header>
-                        <H1>{movie.title ? movie.title : movie.name}</H1>
+                        <H1>{movie.title ? movie.title : 'Sem título para esse filme'}</H1>
                         <VoteAverange>{parseInt(movie.vote_average)}</VoteAverange>
                     </Header>
 

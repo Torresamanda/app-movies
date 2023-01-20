@@ -116,4 +116,45 @@ export const Button = styled.button`
     }
 `
 
+export const ContainerButton = styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 92%;
+    left: 95%;
+    
+`
 
+export const IndexButton = styled.button`
+    margin-right: 20px;
+    width: 225px;
+    height: 25px;
+    font-size: 13px;
+
+    background: #e9e6e3;
+    color: #0F1014;
+
+    text-align: center;
+    float: left;
+
+    position: absolute;
+
+    padding: 0;
+
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+
+    border: none;
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    &:hover {
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    }
+`

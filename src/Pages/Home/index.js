@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { RenderMovie, Container } from './style'
+import { RenderMovie, Container, H2 } from './style'
 
 import {
   APIKey,
@@ -158,7 +158,6 @@ export default function Home() {
     window.scrollTo(0, 0)
   }
 
-
   const renderSeries = () =>
     series.map(serie => (
       isShowSeries && <RenderMoviesAndSeries selectMovie={selectSerie} key={serie.id} movie={serie} />
@@ -227,6 +226,7 @@ export default function Home() {
       {renderPosterMovie()}
       {renderSeriePost()}
 
+      <H2>Lançamentos</H2>
       <RenderMovie className={'center-max-size'}>
         {renderMovies()}
         {renderSeries()}
