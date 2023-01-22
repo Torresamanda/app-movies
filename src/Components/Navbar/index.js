@@ -7,6 +7,8 @@ import SearchIcon from '../../Img/searchIcon.svg'
 import RandomIcon from '../../Img/faviconTwo.png'
 import Avatar from '../../Img/avatar.png'
 
+import Modal from '../Modal/index'
+
 export default function Navbar(props, setSearchKey) {
     return (
         <Header>
@@ -35,9 +37,9 @@ export default function Navbar(props, setSearchKey) {
                         <Img src={SearchIcon} alt="search" onClick={() => {setSearchKey('')}}/>
                     </SubmitSeachButton>
 
-                    <Link to="/">
-                        <ImgAvatar src={Avatar} alt="" />
-                    </Link>
+
+                    <ImgAvatar src={Avatar} alt="Avatar" onClick={() => console.log('click')}/>
+
                 </Box>
             </Form>
         </Header>

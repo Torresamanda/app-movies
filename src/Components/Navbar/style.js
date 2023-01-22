@@ -87,4 +87,5 @@ export const ImgAvatar = styled.img`
     width: 35px;
     border-radius: 50%;
     margin-left: 15px;
+    cursor: pointer;
 `

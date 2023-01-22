@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { RenderMovie, Container, H2 } from './style'
+import { RenderMovie, Container } from './style'
 
 import {
   APIKey,
@@ -226,7 +226,6 @@ export default function Home() {
       {renderPosterMovie()}
       {renderSeriePost()}
 
-      <H2>Lançamentos</H2>
       <RenderMovie className={'center-max-size'}>
         {renderMovies()}
         {renderSeries()}
