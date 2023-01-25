@@ -208,7 +208,7 @@ export default function Home() {
       case isShowSeries:
         return <Navbar
           onSubmit={fetchMovies}
-          onInput={(event) => setSearchKey(event.target.value)}
+          onInput={(event) =>setSearchKey(event.target.value)}
           onClick={() => handleClick()}
           handleText={handleText()}
           setSearchKey={setSearchKey}

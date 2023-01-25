@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Header, Form, Title, Box, Button, Search, SubmitSeachButton, Img, ImgAvatar } from './style.js'
@@ -10,6 +10,8 @@ import Avatar from '../../Img/avatar.png'
 import Modal from '../Modal/index'
 
 export default function Navbar(props, setSearchKey) {
+  const [showModal, setShowModal] = useState(false)
+
     return (
         <Header>
             <Title href="/">+Movies</Title>
@@ -38,9 +40,10 @@ export default function Navbar(props, setSearchKey) {
                     </SubmitSeachButton>
 
 
-                    <ImgAvatar src={Avatar} alt="Avatar" onClick={() => console.log('click')}/>
-
+                    <ImgAvatar src={Avatar} alt="Avatar" onClick={() => setShowModal(true)}/>
+                    
                 </Box>
+                <Modal onClick={() => setShowModal(false)} show={showModal} />
             </Form>
         </Header>
     )
