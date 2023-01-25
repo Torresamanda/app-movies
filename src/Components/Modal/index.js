@@ -5,7 +5,7 @@ import InstaIcon from '../../Img/instagram.svg'
 import linkedinIcon from '../../Img/linkedin.svg'
 import closeIcon from '../../Img/close.svg'
 
-import { ContainerModal, ModalInfo, Img } from './style'
+import { ContainerModal, ModalInfo, Img, ImgClose, H3, Sociais } from './style'
 
 const Modal = props => {
 
@@ -15,32 +15,33 @@ const Modal = props => {
 
     return (
         <>
-            <ContainerModal className="teste">
-                <ModalInfo>
-                    <Img src={closeIcon} alt="close icon" onClick={props.onClick}/>
-                    <h3>Redes Sociais</h3>
-                    <div>
-                        <a href="https://www.instagram.com/srt.a_torres/">
+            <ContainerModal onClick={props.onClick}>
+                <ModalInfo onClick={e => e.stopPropagation()}>
+
+                    <ImgClose src={closeIcon} alt="close icon" onClick={props.onClick} />
+
+                    <H3>Redes Sociais</H3>
+                    <Sociais>
+                        <a href="https://www.instagram.com/srt.a_torres/" target="_blank" rel="noreferrer">
                             <Img src={InstaIcon} alt="instagram icon" />
                         </a>
-                        <a href="https://www.linkedin.com/in/torresamandab/">
+                        <a href="https://www.linkedin.com/in/torresamandab/" target="_blank" rel="noreferrer">
                             <Img src={linkedinIcon} alt="linkedin icon" />
                         </a>
-                    </div>
+                    </Sociais>
 
-                    <h3>Ferramentas utilizadas</h3>
-                    <div>
+                    <H3>Ferramentas utilizadas</H3>
+                    <Sociais>
                         <Img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="firebase" />
                         <Img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VScode" />
+                    </Sociais>
 
-                    </div>
-
-                    <h3>Contato</h3>
-                    <div>
-                        <a href="amandakaia@hotmail.com">
+                    <H3>Contato</H3>
+                    <Sociais>
+                        <a href="amandakaia@hotmail.com" target="_blank" rel="noreferrer">
                             <Img src={EmailIcon} alt="contact" />
                         </a>
-                    </div>
+                    </Sociais>
                 </ModalInfo>
             </ContainerModal >
         </>
