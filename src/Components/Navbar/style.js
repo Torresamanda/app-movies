@@ -19,6 +19,8 @@ export const Title = styled.a`
     text-decoration: none;
     color: #FFF;
 
+    transition: 0.5s;
+
     &:hover{
         color: red;
     }

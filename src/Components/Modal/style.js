@@ -29,8 +29,9 @@ export const ModalInfo = styled.div`
 `
 
 export const Img = styled.img`
-    width: 20px;
+    width: 23px;
     cursor: pointer;
+    margin-bottom: 8px;
 
 `
 
@@ -45,13 +46,26 @@ export const ImgClose = styled.img`
 `
 
 export const H3 = styled.h3`
-    font-size:18px;
+    font-size: 18px;
+    transition: 0.5s;
+
+    &:hover {
+      color: red;
+    }
 `
 
 export const Sociais = styled.div`
-margin: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 10px 0px 20px 0px;
+    gap: 35px;
+
+    border-bottom: 1px solid gray;
+`
+
+export const AvatarImg = styled.img`
+    border-radius: 50%;
+    width: 120px;
+    margin-bottom: 30px;
 `
