@@ -35,16 +35,6 @@ export const Img = styled.img`
 
 `
 
-export const ImgClose = styled.img`
-    width: 15px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 75%;
-    right: 0px;
-    left: 62%;
-
-`
-
 export const H3 = styled.h3`
     font-size: 18px;
     transition: 0.5s;

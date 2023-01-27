@@ -3,14 +3,13 @@ import React from "react";
 import EmailIcon from '../../Img/email.svg'
 import InstaIcon from '../../Img/instagram.svg'
 import linkedinIcon from '../../Img/linkedin.svg'
-import closeIcon from '../../Img/close.svg'
 import Avatar from '../../Img/avatar.png'
 import reactIcon from '../../Img/react.svg'
 import styledComponentIcon from '../../Img/styledComponent.png'
 import githubIcon from '../../Img/github.svg'
 import vsCode from '../../Img/vscode.svg'
 
-import { ContainerModal, ModalInfo, Img, ImgClose, H3, Sociais, AvatarImg } from './style'
+import { ContainerModal, ModalInfo, Img, H3, Sociais, AvatarImg } from './style'
 
 const Modal = props => {
 
@@ -24,8 +23,6 @@ const Modal = props => {
                 <ModalInfo onClick={e => e.stopPropagation()}>
                     <AvatarImg src={Avatar} alt="Avatar Icon" />
                     <div>
-                        <ImgClose src={closeIcon} alt="close icon" onClick={props.onClick} />
-
                         <H3>Contato</H3>
                         <Sociais>
                             <a href="mailto:amandakaia@hotmail.com?" target="_blank" rel="noreferrer">
