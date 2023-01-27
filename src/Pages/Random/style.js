@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: 100vh;
     margin: 2rem 3rem;
     padding: 2rem 3rem;
     display: wrap;

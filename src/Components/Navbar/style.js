@@ -55,6 +55,8 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center;
 
+    visibility: ${(props) => props.visibility ? props.visibility : 'visible'};
+
     gap: 5px;
 
     &:hover {
@@ -69,6 +71,7 @@ export const Search = styled.input`
     padding: 5px 10px;
     border-radius: 25px;
     color: white;
+    visibility: ${(props) => props.visibility ? props.visibility : 'visible'};
 `
 
 export const SubmitSeachButton = styled.button`
@@ -78,6 +81,7 @@ export const SubmitSeachButton = styled.button`
     border: none;
     cursor: pointer;
     right: 65px;
+    visibility: ${(props) => props.visibility ? props.visibility : 'visible'};
 `
 
 export const Img = styled.img`

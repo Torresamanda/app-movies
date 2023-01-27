@@ -18,14 +18,14 @@ export default function Navbar(props, setSearchKey) {
 
             <Form onSubmit={props.onSubmit}>
                 <Box>
-                    <Link to="/random">
-                        <Button>
+                    <Link to="/random" >
+                        <Button visibility={props.visibility}>
                             <Img src={RandomIcon} alt="search" />
                             Surpreenda-me
                         </Button>
                     </Link>
 
-                    <Button onClick={props.onClick}>{props.handleText}</Button>
+                    <Button onClick={props.onClick} visibility={props.visibility}>{props.handleText}</Button>
 
                     <Search
                         type="text"
@@ -33,9 +33,10 @@ export default function Navbar(props, setSearchKey) {
                         value={props.searchKey}
                         setSearchKey={props.setSearchKey}
                         onInput={props.onInput}
+                        visibility={props.visibility}
                     />
 
-                    <SubmitSeachButton>
+                    <SubmitSeachButton visibility={props.visibility}>
                         <Img src={SearchIcon} alt="search" onClick={() => {setSearchKey('')}}/>
                     </SubmitSeachButton>
 

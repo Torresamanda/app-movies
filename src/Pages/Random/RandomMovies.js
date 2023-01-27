@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
 import axios from "axios";
 import YouTube from "react-youtube";
 
@@ -131,9 +130,6 @@ export default function RandomMovies() {
                     <ImgRandom src={favicon} alt="" />
                     Surpreenda-me
                 </Button>
-                <Link to='/'>
-                    <Button>Home</Button>
-                </Link>
             </SectionButtons>
         </>
     )

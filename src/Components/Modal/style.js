@@ -62,6 +62,8 @@ export const Sociais = styled.div`
     gap: 35px;
 
     border-bottom: 1px solid gray;
+
+
 `
 
 export const AvatarImg = styled.img`

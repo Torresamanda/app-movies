@@ -6,6 +6,8 @@ import { useState } from 'react'
 
 import RandomIcon from '../../Img/faviconTwo.png'
 
+import Navbar from '../../Components/Navbar/index'
+
 export default function Random() {
 
     const [isShowMovie, setIsShowMovie] = useState(true)
@@ -29,19 +31,22 @@ export default function Random() {
     }
 
     return (
-        <Container>
-            {isShowMovie && <RandonMovie />}
-            {isShowSerie && <RandomSeries />}
+        <>
+            <Navbar visibility='hidden'/>
+            <Container>
+                {isShowMovie && <RandonMovie />}
+                {isShowSerie && <RandomSeries />}
 
-            <ContainerButton>
+                <ContainerButton>
 
-                <IndexButton onClick={() => handleClick()}>
-                    <ImgRandom src={RandomIcon} alt={'random icon'} />
-                    {handleText()}
-                </IndexButton>
+                    <IndexButton onClick={() => handleClick()}>
+                        <ImgRandom src={RandomIcon} alt={'random icon'} />
+                        {handleText()}
+                    </IndexButton>
 
-            </ContainerButton>
-        </Container>
+                </ContainerButton>
+            </Container>
+        </>
     )
 }
 
