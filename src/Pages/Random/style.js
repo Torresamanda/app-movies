@@ -94,8 +94,9 @@ export const SectionButtons = styled.div`
 export const Button = styled.button`
     background: #e9e6e3;
     color: #0F1014;
-    width: 125px;
+    width: 155px;
     height: 25px;
+    font-size: 16px;
     text-align: center;
     float: left;
     position: relative;
@@ -121,7 +122,7 @@ export const ContainerButton = styled.div`
     align-items: flex-end;
     justify-content: flex-end;
     position: absolute;
-    bottom: 92%;
+    bottom: 82%;
     left: 95%;
     
 `
@@ -130,7 +131,7 @@ export const IndexButton = styled.button`
     margin-right: 20px;
     width: 225px;
     height: 25px;
-    font-size: 13px;
+    font-size: 14px;
 
     background: #e9e6e3;
     color: #0F1014;

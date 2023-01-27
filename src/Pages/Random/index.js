@@ -43,7 +43,6 @@ export default function Random() {
                         <ImgRandom src={RandomIcon} alt={'random icon'} />
                         {handleText()}
                     </IndexButton>
-
                 </ContainerButton>
             </Container>
         </>
