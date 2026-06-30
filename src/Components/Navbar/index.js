@@ -5,7 +5,7 @@ import { Header, Form, Title, Box, Button, Search, SubmitSeachButton, Img, ImgAv
 
 import SearchIcon from '../../Img/searchIcon.svg'
 import RandomIcon from '../../Img/faviconTwo.png'
-import Avatar from '../../Img/avatar.png'
+import Avatar from '../../Img/avatar.pn'
 
 import Modal from '../Modal/index'
 
